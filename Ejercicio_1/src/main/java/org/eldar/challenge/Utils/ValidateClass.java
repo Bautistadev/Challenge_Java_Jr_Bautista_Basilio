@@ -73,7 +73,7 @@ public class ValidateClass {
      public static boolean validateEmail(String validate,String message){
 
         if(validate == null || validate == "") {
-            System.out.println("Error: Formato invelido de email")
+            System.out.println(message)
             return false;
         }
         // Verificar que contenga un "@" y un "." después del "@"
