@@ -70,21 +70,21 @@ public class ValidateClass {
         return false;
     }
 
-    public static boolean validateEmail(String validate,String message){
+     public static boolean validateEmail(String validate){
 
         if(validate == null || validate == "") {
-            System.out.println(message);
-            return true;
-        }
-
-        String regex = "^[\\w-\\.]+@[\\w-]+\\.com$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(validate);
-        if (!matcher.matches()) {
-            System.out.println(message);
             return false;
         }
-        return true;
+        // Verificar que contenga un "@" y un "." después del "@"
+        int posicionArroba = validate.indexOf("@");
+        int posicionPunto = validate.indexOf(".", posicionArroba);
+
+        // Verificar que contenga ".com" en cualquier parte
+        boolean contieneCom = validate.contains(".com");
+
+        // El email es válido si contiene "@" no al inicio, un "." después del "@" y ".com" en cualquier lugar
+        return posicionArroba > 0 && posicionPunto > posicionArroba && contieneCom;
+
     }
 
     public static LocalDate toLocalDate(String fecha){
